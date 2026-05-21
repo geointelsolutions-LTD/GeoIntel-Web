@@ -5,6 +5,8 @@ import {
   Marker,
   InfoWindow
 } from '@react-google-maps/api';
+import dynamic from 'next/dynamic';
+const MapView = dynamic(() => import('GeoIntel/website/public/components/src/Domain/MapView.js'), { ssr: false });
 
 // --- GEOINTEL PROJECT LOCATIONS (Replace with your real data) ---
 const GEOINTEL_PROJECTS = [
@@ -67,7 +69,7 @@ export default function MapView() {
   // Load the Google Maps API using your key from .env
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
   });
 
   const onLoad = useCallback((map) => {
